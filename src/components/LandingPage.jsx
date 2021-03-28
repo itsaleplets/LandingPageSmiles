@@ -5,10 +5,22 @@ import invest from '../images/invest.png';
 import goals from '../images/goals.png';
 import date from '../images/date.png';
 import offers from '../images/offers.png';
-
+import { useState } from 'react';
+import userEmail from '../services/api';
 // import cursor from '../images/cursor.png';
 
 function App() {
+  const [email, setEmail] = useState('');
+  
+  const handleChange = ({ target }) => {
+    const { value } = target;
+    setEmail(value);
+  };
+
+  const handleClick = () => {
+    userEmail(email);
+  };
+
   return (
     <div className="body">
       <div className="top">
@@ -73,8 +85,8 @@ function App() {
       <div className="section3">
         <h1>Já quer aproveitar?</h1>
         <p>Faça parte da lista VIP e receba o acesso beta em primeira mão</p>
-        <input placeholder="EMAIL"/>
-        <button>
+        <input onChange={handleChange} placeholder="EMAIL"/>
+        <button onClick={handleClick}>
           QUERO FAZER PARTE
         </button>
       </div>
